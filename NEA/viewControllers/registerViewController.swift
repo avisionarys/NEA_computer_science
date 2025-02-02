@@ -54,18 +54,18 @@ class registerviewcontroller: UIViewController {
                             
                         ])
                     }
-                        if let error = error {
-                            print("Error saving email to Firestore: \(error.localizedDescription)")
-                        } else {
-                            print("Email successfully saved to Firestore.")
-                        }
+                    if let error = error {
+                        print("Error saving email to Firestore: \(error.localizedDescription)")
+                    } else {
+                        print("Email successfully saved to Firestore.")
+                        self.performSegue(withIdentifier: "reghomeViewController", sender: self)
                     }
-            
+                }
+                
             }
-  
-        }
-        else{
-            print("successful")
+            
+            
         }
     }
+    
 }

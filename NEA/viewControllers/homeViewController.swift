@@ -15,39 +15,46 @@ class homeViewController: UIViewController {
     
     @IBOutlet weak var segmentOutlet: UISegmentedControl!
     
-    
-    
     @IBOutlet weak var mtUIView: UIView!
-    @IBOutlet weak var prUIViw: UIView!
+    @IBOutlet weak var prUIView: UIView!
     
-  
     @IBOutlet weak var ptTableView: UITableView!
     @IBOutlet weak var mtTableView: UITableView!
     
+ 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        if let mtView = mtUIView, let prView = prUIViw {
+        navigationItem.hidesBackButton = true
+        
+        
+        if let mtView = mtUIView, let prView = prUIView {
             self.view.bringSubviewToFront(mtView)
             self.view.bringSubviewToFront(prView)
+            mtUIView.isHidden = true
+            prUIView.isHidden = false
         } else {
             print("values are nil")
         }
+       
     }
+
     
     @IBAction func SegmentedControll(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex{
         case 0:
-            self.view.bringSubviewToFront(prUIViw)
+            prUIView.isHidden = false
+            mtUIView.isHidden = true
         case 1:
-            self.view.bringSubviewToFront(mtUIView)
+            prUIView.isHidden = true
+            mtUIView.isHidden = false
             
             
         default:
-            break
+            prUIView.isHidden = false
+            mtUIView.isHidden = true
         }
         
         
@@ -56,8 +63,24 @@ class homeViewController: UIViewController {
     }
     
     
-   
+    @IBAction func logOut(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+            
+        
+    }
+    
 
+    
+    
+    
+    
+    
   /*  func updatePersonalRecordReps(exerciseID: String, newRepCount: Int) {
         let db = Firestore.firestore()
         
