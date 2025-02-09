@@ -13,7 +13,6 @@ class exercisesViewController: UIViewController {
     @IBOutlet weak var exerciseTableView: UITableView!
     
     
-    
     var exercises: [exercise] = [
         exercise(name: "bench press"),
         exercise(name: "incline bench press")
@@ -54,9 +53,14 @@ extension exercisesViewController: UITableViewDataSource {
 extension exercisesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "addExercise", sender: self)
+        
+        
+        
+        dismiss(animated: true, completion: nil)
+        
     }
     
     
  }
+
 
