@@ -7,8 +7,18 @@
 
 import UIKit
 
+protocol AddexerciseDelegate{
+    
+    func addExercise(workout: Workout)
+}
+
+
+
+
 class exercisesViewController: UIViewController {
 
+    var delegate: AddexerciseDelegate?
+  
     
     @IBOutlet weak var exerciseTableView: UITableView!
     
@@ -53,10 +63,12 @@ extension exercisesViewController: UITableViewDataSource {
 extension exercisesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedItem = exercises[indexPath.row].name
         
         
         
-        dismiss(animated: true, completion: nil)
+        delegate?.addExercise(workout:Workout(exericseName: selectedItem)   )
+        self.dismiss(animated: true, completion: nil)
         
     }
     
