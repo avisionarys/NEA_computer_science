@@ -75,7 +75,7 @@ extension exercisesViewController: UITableViewDelegate {
         delegate?.addExercise(workout: exerciseName)
        
         
-        self.navigationController?.pushViewController(templateViewController, animated: true)
+        dismiss(animated: true)
         
         
         
