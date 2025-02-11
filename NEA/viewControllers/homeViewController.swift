@@ -81,38 +81,7 @@ class homeViewController: UIViewController {
     
     
     
-  /*  func updatePersonalRecordReps(exerciseID: String, newRepCount: Int) {
-        let db = Firestore.firestore()
-        
-        db.collection("users").document(UserID).collection("exercises").document(exerciseID)
-            .getDocument { (document, error) in
-                if let error = error {
-                    print("Error retrieving document: \(error)")
-                    return
-                }
-                
-                guard let document = document, document.exists,
-                      let currentRepsRecord = document.data()?["repCount"] as? Int else {
-                    print("Document does not exist or data is missing.")
-                    return
-                }
-                
-                if currentRepsRecord < newRepCount {
-                    db.collection("users").document(UserID).collection("exercises").document(exerciseID)
-                        .updateData(["repCount": newRepCount]) { error in
-                            if let error = error {
-                                print("Error updating document: \(error)")
-                            } else {
-                                print("Personal record updated successfully.")
-                            }
-                        }
-                }
-            }
-    }
-    
-    
-    
-*/
+ 
     
     
     
