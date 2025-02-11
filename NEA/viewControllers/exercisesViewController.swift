@@ -7,21 +7,21 @@
 
 import UIKit
 
-protocol AddexerciseDelegate{
+
+protocol MyProtocol{
     
-    func addExercise(workout: Workout)
+    func addExercise(workout: String)
 }
-
-
 
 
 class exercisesViewController: UIViewController {
 
-    var delegate: AddexerciseDelegate?
-  
+    /*var delegate: AddexerciseDelegate?*/
+    var delegate: MyProtocol?
+    var selectedWorkout: String?
     
     @IBOutlet weak var exerciseTableView: UITableView!
-    
+
     
     var exercises: [exercise] = [
         exercise(name: "bench press"),
@@ -40,7 +40,11 @@ class exercisesViewController: UIViewController {
     }
     
    
+func senddata(){
         
+        delegate?.addExercise(workout: selectedWorkout ?? "")
+        self.navigationController?.popViewController(animated: true)
+    }
         
     
 
@@ -63,13 +67,20 @@ extension exercisesViewController: UITableViewDataSource {
 extension exercisesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selectedItem = exercises[indexPath.row].name
+        
+        
+        let templateViewController = storyboard?.instantiateViewController(withIdentifier: "templateViewController") as! templateViewController
+       
+        let exerciseName = exercises[indexPath.row].name
+        delegate?.addExercise(workout: exerciseName)
+       
+        
+        self.navigationController?.pushViewController(templateViewController, animated: true)
         
         
         
-        delegate?.addExercise(workout:Workout(exericseName: selectedItem)   )
-        self.dismiss(animated: true, completion: nil)
         
+
     }
     
     

@@ -7,19 +7,18 @@
 
 import UIKit
 
-struct Workout{
-    var exericseName: String
-}
 
-class templateViewController: UIViewController, UITableViewDelegate {
+
+
+class templateViewController: UIViewController, UITableViewDelegate , MyProtocol{
     
-    var Workouts = [Workout]()
+ 
+    var Workouts: [String] = []
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segues" {
             if let secondVC = segue.destination as? exercisesViewController {
-                let controller = exercisesViewController()
-                controller.delegate = self
+                secondVC.delegate = self
             }
         }
     }
@@ -36,7 +35,10 @@ class templateViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var exerciseTableView: UITableView!
   
- 
+    func addExercise(workout: String){
+        Workouts.append(workout)
+        exerciseTableView.reloadData()
+    }
     
     
 
@@ -49,25 +51,13 @@ extension templateViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReused", for: indexPath)
-        cell.textLabel?.text = Workouts[indexPath.row].exericseName
+        cell.textLabel?.text = Workouts[indexPath.row]
         return cell
     }
     
 }
 
-extension templateViewController:AddexerciseDelegate{
-    
-    func addExercise(workout:Workout){
-        self.dismiss(animated: true)
-        self.Workouts.append(workout)
-        self.exerciseTableView.reloadData()
-        
-        
-    }
-    
-    
-}
-    
-    
+
+
     
 
