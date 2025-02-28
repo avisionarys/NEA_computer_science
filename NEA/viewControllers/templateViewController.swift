@@ -34,11 +34,11 @@ class templateViewController: UIViewController, UITableViewDelegate , MyProtocol
     }
     
     
-    @IBOutlet weak var exerciseTableView: UITableView!
+    @IBOutlet weak var templateTableView: UITableView!
   
     func addExercise(workout: String){
         Workouts.append(workout)
-        exerciseTableView.reloadData()
+        templateTableView.reloadData()
     }
     
     
