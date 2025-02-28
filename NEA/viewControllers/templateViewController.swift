@@ -29,8 +29,8 @@ class templateViewController: UIViewController, UITableViewDelegate , MyProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        exerciseTableView.dataSource = self
-        exerciseTableView.delegate = self
+        templateTableView.dataSource = self
+        templateTableView.delegate = self
     }
     
     
